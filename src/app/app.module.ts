@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { TableComponent } from './table/table.component';
 
 import { MaterialModule } from './Material.Module';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TableComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
