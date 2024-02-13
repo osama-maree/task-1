@@ -1,0 +1,44 @@
+<form [formGroup]="addForm" (ngSubmit)="onSubmit(addForm)" class="form">
+  <mat-form-field class="formControl">
+    <mat-label>Enter First Name</mat-label>
+    <input matInput placeholder="Osama..." formControlName="firstName" required />
+    <div *ngIf="addForm.get('firstName')?.errors && addForm.get('firstName')?.touched">
+      <mat-error *ngIf="addForm.get('firstName')?.getError('required')">field is required</mat-error>
+      <mat-error *ngIf="addForm.get('firstName')?.getError('minlength')">minimum length is 3 character</mat-error>
+      <mat-error *ngIf="addForm.get('firstName')?.getError('maxlength')">maximum length is 20 character</mat-error>
+    </div>
+  </mat-form-field>
+  <mat-form-field class="formControl">
+    <mat-label>Enter Second Name</mat-label>
+    <input matInput placeholder="Mahmoud..." formControlName="secondName" required />
+    <div *ngIf="addForm.get('secondName')?.errors && addForm.get('secondName')?.touched">
+      <mat-error *ngIf="addForm.get('secondName')?.getError('required')">field is required</mat-error>
+      <mat-error *ngIf="addForm.get('secondName')?.getError('minlength')">minimum length is 3 character</mat-error>
+      <mat-error *ngIf="addForm.get('secondName')?.getError('maxlength')">maximum length is 20 character</mat-error>
+    </div>
+  </mat-form-field>
+
+  <mat-form-field class="formControl">
+    <mat-label>Enter Final Name</mat-label>
+    <input matInput placeholder="Maree..." formControlName="finalName" required />
+    <div *ngIf="addForm.get('finalName')?.errors && addForm.get('finalName')?.touched">
+      <mat-error *ngIf="addForm.get('finalName')?.getError('required')">field is required</mat-error>
+      <mat-error *ngIf="addForm.get('finalName')?.getError('minlength')">minimum length is 3 character</mat-error>
+      <mat-error *ngIf="addForm.get('finalName')?.getError('maxlength')">maximum length is 20 character</mat-error>
+    </div><mat-error *ngIf="addForm.get('age')?.getError('max')">maximum age is 100 year</mat-error>
+
+  </mat-form-field>
+  <mat-form-field class="formControl">
+    <mat-label>Enter your Age</mat-label>
+    <input matInput matInput type="number" placeholder="22" formControlName="age" required />
+    <div *ngIf="addForm.get('age')?.errors && addForm.get('age')?.touched">
+      <mat-error *ngIf="addForm.get('age')?.getError('required')">field is required</mat-error>
+      <mat-error *ngIf="addForm.get('age')?.getError('min')">minimum age is 1 year</mat-error>
+      <mat-error *ngIf="addForm.get('age')?.getError('max')">maximum age is 100 year</mat-error>
+    </div>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" class="formControl" [disabled]="addForm.invalid">
+    Add
+  </button>
+</form>
