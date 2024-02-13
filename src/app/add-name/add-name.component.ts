@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { IndexedDbService } from '../indexeddb.service';
 
 @Component({
   selector: 'app-add-name',
@@ -7,6 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-name.component.css'],
 })
 export class AddNameComponent {
+  constructor(private _indexedDbService: IndexedDbService) {}
   addForm: FormGroup = new FormGroup({
     firstName: new FormControl(null, [
       Validators.required,
@@ -30,6 +32,8 @@ export class AddNameComponent {
   });
 
   onSubmit(addForm: FormGroup) {
-    console.log(addForm)
+    this._indexedDbService.persons.add(addForm.value).then((data) => {
+      this.addForm.reset();
+    });
   }
 }

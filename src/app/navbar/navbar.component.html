@@ -1,15 +1,29 @@
 <p>
   <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+    >
       <mat-icon>menu</mat-icon>
     </button>
-    <span>Crud-Task</span>
+    <a routerLink="home"> <span>Crud-Task</span></a>
     <span class="example-spacer"></span>
-    <a routerLink="/add">
-      <button mat-icon-button matTooltip="Add New Name" class="example-icon" aria-label="Add New Name">
-        <mat-icon style="color: white;">add</mat-icon>
-      </button></a>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <a routerLink="add">
+      <button
+        mat-icon-button
+        matTooltip="Add New Name"
+        class="example-icon"
+        aria-label="Add New Name"
+      >
+        <mat-icon style="color: white">add</mat-icon>
+      </button></a
+    >
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with share icon"
+    >
       <mat-icon>logout</mat-icon>
     </button>
   </mat-toolbar>

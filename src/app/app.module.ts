@@ -9,6 +9,7 @@ import { MaterialModule } from './Material.Module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AddNameComponent } from './add-name/add-name.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [IndexedDbService],
   bootstrap: [AppComponent],

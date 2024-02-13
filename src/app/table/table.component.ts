@@ -1,6 +1,8 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { IndexedDbService } from '../indexeddb.service';
+import { Person } from '../person';
 
 /**
  * @title Table with pagination
@@ -10,16 +12,24 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
 })
-export class TableComponent implements AfterViewInit {
+export class TableComponent implements AfterViewInit, OnInit {
+  dataSource = new MatTableDataSource<Person>([]);
+
+  constructor(private _indexedDbService: IndexedDbService) {}
+  ngOnInit(): void {
+    this._indexedDbService.persons.toArray().then((persons) => {
+      this.dataSource.data = persons;
+    });
+  }
+
   displayedColumns: string[] = [
     'firstName',
     'secondName',
     'finalName',
-    'Age',
+    'age',
     'update',
     'delete',
   ];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -34,45 +44,3 @@ export class TableComponent implements AfterViewInit {
     console.log('Delete row:', row);
   }
 }
-
-export interface PeriodicElement {
-  firstName: string;
-  secondName: string;
-  finalName: string;
-  Age: number;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-  { firstName: 'osama', secondName: 'Hydrogen', finalName: 'maree', Age: 22 },
-];

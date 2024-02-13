@@ -26,10 +26,10 @@
       </ng-container>
 
       <!-- Age Column -->
-      <ng-container matColumnDef="Age">
+      <ng-container matColumnDef="age">
         <th *matHeaderCellDef mat-header-cell>Age</th>
         <td *matCellDef="let element" mat-cell>
-          {{ element.Age }}
+          {{ element.age }}
         </td>
       </ng-container>
       <!-- Update Column -->
@@ -61,7 +61,7 @@
     </table>
 
     <mat-paginator
-      [pageSizeOptions]="[5, 10, 20]"
+      [pageSizeOptions]="[5, 10]"
       showFirstLastButtons
       aria-label="Select page of periodic elements"
     >
