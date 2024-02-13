@@ -10,13 +10,17 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AddNameComponent } from './add-name/add-name.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { SnackbarService } from './snackbar.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+registerLocaleData(en);
 @NgModule({
   declarations: [
     AppComponent,
     TableComponent,
     NavbarComponent,
     AddNameComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
