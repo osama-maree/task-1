@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { IndexedDbService } from '../indexeddb.service';
 import { Person } from '../person';
+import { SnackbarService } from '../snackbar.service';
 
 /**
  * @title Table with pagination
@@ -16,7 +17,10 @@ export class TableComponent implements AfterViewInit, OnInit {
   dataSource = new MatTableDataSource<Person>([]);
   isEditing: boolean = false;
   selectedRow: Person | null = null;
-  constructor(private _indexedDbService: IndexedDbService) {}
+  constructor(
+    private _indexedDbService: IndexedDbService,
+    private _snackbarService: SnackbarService
+  ) {}
   ngOnInit(): void {
     this._indexedDbService.persons.toArray().then((persons) => {
       this.dataSource.data = persons;
@@ -40,25 +44,23 @@ export class TableComponent implements AfterViewInit, OnInit {
   updateRow(row: Person): void {
     this.isEditing = true;
     this.selectedRow = row;
-    console.log('Update row:', row);
   }
   saveRow(row: Person): void {
     this._indexedDbService.persons.update(row.id, row).then(
-      (result) => {
-        console.log('Record updated successfully', result);
+      () => {
+        this._snackbarService.openSnackBar('Saved Data');
       },
-      (error) => {
-        console.error('Error updating record', error);
+      () => {
+        this._snackbarService.openSnackBar('Error In Edit');
       }
     );
     this.selectedRow = null;
-    console.log(row);
   }
 
   deleteRow(row: Person): void {
     this._indexedDbService.persons.delete(row.id).then(
-      (result)=>console.log(result),
-      (error)=>console.log(error)
+      () => this._snackbarService.openSnackBar('Deleted Item'),
+      () => this._snackbarService.openSnackBar('Error In Deleted Item')
     );
     this.dataSource.data = this.dataSource.data.filter(
       (person) => person.id != row.id

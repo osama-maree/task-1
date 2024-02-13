@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IndexedDbService } from '../indexeddb.service';
+import { SnackbarService } from '../snackbar.service';
 
 @Component({
   selector: 'app-add-name',
@@ -8,7 +9,10 @@ import { IndexedDbService } from '../indexeddb.service';
   styleUrls: ['./add-name.component.css'],
 })
 export class AddNameComponent {
-  constructor(private _indexedDbService: IndexedDbService) {}
+  constructor(
+    private _indexedDbService: IndexedDbService,
+    private _snackbarService: SnackbarService
+  ) {}
   addForm: FormGroup = new FormGroup({
     firstName: new FormControl(null, [
       Validators.required,
@@ -32,10 +36,12 @@ export class AddNameComponent {
   });
 
   onSubmit(addForm: FormGroup) {
-    this._indexedDbService.persons.add(addForm.value).then((data) => {
-      this.addForm.reset();
-    },
-    (error)=>console.log(error)
+    this._indexedDbService.persons.add(addForm.value).then(
+      () => {
+        this.addForm.reset();
+        this._snackbarService.openSnackBar('Successfully added');
+      },
+      () => this._snackbarService.openSnackBar('Error In Add')
     );
   }
 }

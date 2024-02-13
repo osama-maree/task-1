@@ -9,7 +9,8 @@ import { MaterialModule } from './Material.Module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AddNameComponent } from './add-name/add-name.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import {FormsModule}from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { SnackbarService } from './snackbar.service';
 @NgModule({
   declarations: [
     AppComponent,
