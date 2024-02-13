@@ -14,7 +14,8 @@ import { Person } from '../person';
 })
 export class TableComponent implements AfterViewInit, OnInit {
   dataSource = new MatTableDataSource<Person>([]);
-
+  isEditing: boolean = false;
+  selectedRow: Person | null = null;
   constructor(private _indexedDbService: IndexedDbService) {}
   ngOnInit(): void {
     this._indexedDbService.persons.toArray().then((persons) => {
@@ -36,11 +37,19 @@ export class TableComponent implements AfterViewInit, OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-  updateRow(row: any): void {
+  updateRow(row: Person): void {
+    this.isEditing = true;
+    this.selectedRow = row;
     console.log('Update row:', row);
   }
-
-  deleteRow(row: any): void {
-    console.log('Delete row:', row);
+  saveRow(row: Person): void {
+    this.selectedRow = null;
+    console.log(row);
+  }
+  deleteRow(row: Person): void {
+    this._indexedDbService.persons.delete(row.id);
+    this.dataSource.data = this.dataSource.data.filter(
+      (person) => person.id != row.id
+    );
   }
 }
