@@ -4,8 +4,17 @@ import { TableComponent } from './table/table.component';
 import { AddNameComponent } from './add-name/add-name.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', component: TableComponent },
-  { path: 'add', component: AddNameComponent },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+  {
+    path: 'home',
+    component: TableComponent,
+    title: 'Task- Names-Grid',
+  },
+  { path: 'add', component: AddNameComponent, title: 'Task Add Name' },
 ];
 
 @NgModule({
