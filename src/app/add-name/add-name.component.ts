@@ -34,6 +34,8 @@ export class AddNameComponent {
   onSubmit(addForm: FormGroup) {
     this._indexedDbService.persons.add(addForm.value).then((data) => {
       this.addForm.reset();
-    });
+    },
+    (error)=>console.log(error)
+    );
   }
 }

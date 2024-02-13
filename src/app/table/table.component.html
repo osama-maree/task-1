@@ -8,7 +8,8 @@
           First Name
         </th>
         <td *matCellDef="let element" mat-cell>
-          <input type="text" [(ngModel)]="selectedRow.firstName" *ngIf="selectedRow&&selectedRow.id==element.id" />
+          <input type="text" [ngModel]="selectedRow.firstName" (ngModelChange)="selectedRow.firstName=$event"
+            *ngIf="selectedRow&&selectedRow.id==element.id" />
           <span *ngIf="selectedRow?.id!=element.id">{{ element.firstName }}</span>
         </td>
 
@@ -21,7 +22,8 @@
         </th>
 
         <td *matCellDef="let element" mat-cell>
-          <input type="text" [ngModel]="selectedRow.secondName" *ngIf="selectedRow&&selectedRow.id==element.id" />
+          <input type="text" [ngModel]="selectedRow.secondName" (ngModelChange)="selectedRow.secondName=$event"
+            *ngIf="selectedRow&&selectedRow.id==element.id" />
           <span *ngIf="selectedRow?.id!=element.id">{{ element.secondName }}</span>
         </td>
       </ng-container>
@@ -32,7 +34,8 @@
           Final Name
         </th>
         <td *matCellDef="let element" mat-cell>
-          <input type="text" [ngModel]="selectedRow.finalName" *ngIf="selectedRow&&selectedRow.id==element.id" />
+          <input type="text" [ngModel]="selectedRow.finalName" (ngModelChange)="selectedRow.finalName=$event"
+            *ngIf="selectedRow&&selectedRow.id==element.id" />
           <span *ngIf="selectedRow?.id!=element.id">{{ element.finalName }}</span>
         </td>
       </ng-container>
@@ -43,7 +46,8 @@
           Age
         </th>
         <td *matCellDef="let element" mat-cell>
-          <input type="number" [ngModel]="selectedRow.age" *ngIf="selectedRow&&selectedRow.id==element.id" />
+          <input type="number" [ngModel]="selectedRow.age" (ngModelChange)="selectedRow.age=$event"
+            *ngIf="selectedRow&&selectedRow.id==element.id" />
           <span *ngIf="selectedRow?.id!=element.id">{{ element.age }}</span>
 
         </td>

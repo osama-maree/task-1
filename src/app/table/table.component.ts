@@ -43,11 +43,23 @@ export class TableComponent implements AfterViewInit, OnInit {
     console.log('Update row:', row);
   }
   saveRow(row: Person): void {
+    this._indexedDbService.persons.update(row.id, row).then(
+      (result) => {
+        console.log('Record updated successfully', result);
+      },
+      (error) => {
+        console.error('Error updating record', error);
+      }
+    );
     this.selectedRow = null;
     console.log(row);
   }
+
   deleteRow(row: Person): void {
-    this._indexedDbService.persons.delete(row.id);
+    this._indexedDbService.persons.delete(row.id).then(
+      (result)=>console.log(result),
+      (error)=>console.log(error)
+    );
     this.dataSource.data = this.dataSource.data.filter(
       (person) => person.id != row.id
     );
