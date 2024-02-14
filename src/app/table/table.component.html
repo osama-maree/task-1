@@ -3,65 +3,82 @@
     <table [dataSource]="dataSource" mat-table>
       <!-- First Name Column -->
       <ng-container matColumnDef="firstName">
-
-        <th *matHeaderCellDef mat-header-cell>
-          First Name
-        </th>
+        <th *matHeaderCellDef mat-header-cell>First Name</th>
         <td *matCellDef="let element" mat-cell>
-          <input type="text" [ngModel]="selectedRow.firstName" (ngModelChange)="selectedRow.firstName=$event"
-            *ngIf="selectedRow&&selectedRow.id==element.id" />
-          <span *ngIf="selectedRow?.id!=element.id">{{ element.firstName }}</span>
+          <input
+            type="text"
+            [ngModel]="selectedRow.firstName"
+            (ngModelChange)="selectedRow.firstName = $event"
+            *ngIf="selectedRow && selectedRow.id == element.id"
+          />
+          <span *ngIf="selectedRow?.id != element.id">{{
+            element.firstName
+          }}</span>
         </td>
-
       </ng-container>
 
       <!-- Second Name Column -->
       <ng-container matColumnDef="secondName">
-        <th *matHeaderCellDef mat-header-cell>
-          Second Name
-        </th>
+        <th *matHeaderCellDef mat-header-cell>Second Name</th>
 
         <td *matCellDef="let element" mat-cell>
-          <input type="text" [ngModel]="selectedRow.secondName" (ngModelChange)="selectedRow.secondName=$event"
-            *ngIf="selectedRow&&selectedRow.id==element.id" />
-          <span *ngIf="selectedRow?.id!=element.id">{{ element.secondName }}</span>
+          <input
+            type="text"
+            [ngModel]="selectedRow.secondName"
+            (ngModelChange)="selectedRow.secondName = $event"
+            *ngIf="selectedRow && selectedRow.id == element.id"
+          />
+          <span *ngIf="selectedRow?.id != element.id">{{
+            element.secondName
+          }}</span>
         </td>
       </ng-container>
 
       <!-- Final Name Column -->
       <ng-container matColumnDef="finalName">
-        <th *matHeaderCellDef mat-header-cell>
-          Final Name
-        </th>
+        <th *matHeaderCellDef mat-header-cell>Final Name</th>
         <td *matCellDef="let element" mat-cell>
-          <input type="text" [ngModel]="selectedRow.finalName" (ngModelChange)="selectedRow.finalName=$event"
-            *ngIf="selectedRow&&selectedRow.id==element.id" />
-          <span *ngIf="selectedRow?.id!=element.id">{{ element.finalName }}</span>
+          <input
+            type="text"
+            [ngModel]="selectedRow.finalName"
+            (ngModelChange)="selectedRow.finalName = $event"
+            *ngIf="selectedRow && selectedRow.id == element.id"
+          />
+          <span *ngIf="selectedRow?.id != element.id">{{
+            element.finalName
+          }}</span>
         </td>
       </ng-container>
 
       <!-- Age Column -->
       <ng-container matColumnDef="age">
-        <th *matHeaderCellDef mat-header-cell>
-          Age
-        </th>
+        <th *matHeaderCellDef mat-header-cell>Age</th>
         <td *matCellDef="let element" mat-cell>
-          <input type="number" [ngModel]="selectedRow.age" (ngModelChange)="selectedRow.age=$event"
-            *ngIf="selectedRow&&selectedRow.id==element.id" />
-          <span *ngIf="selectedRow?.id!=element.id">{{ element.age }}</span>
-
+          <input
+            type="number"
+            [ngModel]="selectedRow.age"
+            (ngModelChange)="selectedRow.age = $event"
+            *ngIf="selectedRow && selectedRow.id == element.id"
+          />
+          <span *ngIf="selectedRow?.id != element.id">{{ element.age }}</span>
         </td>
       </ng-container>
       <!-- Update Column -->
       <ng-container matColumnDef="update">
-        <th *matHeaderCellDef mat-header-cell>
-          Update
-        </th>
+        <th *matHeaderCellDef mat-header-cell>Update</th>
         <td *matCellDef="let element" mat-cell>
-          <button *ngIf="selectedRow?.id!=element.id" (click)="updateRow(element)" mat-icon-button>
+          <button
+            *ngIf="selectedRow?.id != element.id"
+            (click)="updateRow(element)"
+            mat-icon-button
+          >
             <mat-icon color="accent">edit</mat-icon>
           </button>
-          <button *ngIf="selectedRow&&selectedRow.id==element.id" (click)="saveRow(selectedRow)" mat-icon-button>
+          <button
+            *ngIf="selectedRow && selectedRow.id == element.id"
+            (click)="saveRow(selectedRow)"
+            mat-icon-button
+          >
             <mat-icon color="accent">save</mat-icon>
           </button>
         </td>
@@ -69,14 +86,11 @@
 
       <!-- Delete Column -->
       <ng-container matColumnDef="delete">
-        <th *matHeaderCellDef mat-header-cell>
-          Delete
-        </th>
+        <th *matHeaderCellDef mat-header-cell>Delete</th>
         <td *matCellDef="let element" mat-cell>
           <button (click)="deleteRow(element)" mat-icon-button>
             <mat-icon color="warn">delete</mat-icon>
           </button>
-
         </td>
       </ng-container>
       <tbody>
@@ -85,7 +99,11 @@
       </tbody>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons aria-label="Select page of periodic elements">
+    <mat-paginator
+      [pageSizeOptions]="[5, 10]"
+      showFirstLastButtons
+      aria-label="Select page of periodic elements"
+    >
     </mat-paginator>
   </div>
 </div>
